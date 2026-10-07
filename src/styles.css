@@ -90,6 +90,95 @@ button { font: inherit; }
 .stance[data-side="forehand"] { border-color: rgba(111,190,255,.6); background: rgba(10,52,93,.62); }
 .stance[data-side="backhand"] { border-color: rgba(213,171,255,.58); background: rgba(61,32,92,.62); }
 
+.timing-guide {
+  --ring-scale: 1.5;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transform: translate(-28px, -28px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .1s ease;
+  filter: drop-shadow(0 4px 18px rgba(0,0,0,.36));
+}
+.timing-guide.visible { opacity: 1; }
+
+.timing-ring {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  border: 2px solid rgba(218,238,255,.82);
+  border-radius: 50%;
+  transform: scale(var(--ring-scale));
+  transition: transform .06s linear, border-color .1s ease, box-shadow .1s ease;
+  background: rgba(8,22,43,.08);
+}
+.timing-ring::before,
+.timing-ring::after {
+  content: '';
+  position: absolute;
+  background: rgba(232,244,255,.7);
+}
+.timing-ring::before { width: 14px; height: 1px; left: 19px; top: 26px; }
+.timing-ring::after { width: 1px; height: 14px; left: 26px; top: 19px; }
+.timing-ring span {
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(255,255,255,.24);
+  border-radius: 50%;
+}
+
+.timing-copy {
+  min-width: 118px;
+  padding: 7px 10px 8px;
+  border-radius: 10px;
+  background: rgba(4,13,29,.68);
+  border: 1px solid rgba(255,255,255,.12);
+  backdrop-filter: blur(10px);
+}
+.timing-copy b {
+  display: block;
+  font-size: 10px;
+  letter-spacing: .13em;
+  line-height: 1.1;
+}
+.timing-copy span {
+  display: block;
+  margin-top: 4px;
+  max-width: 150px;
+  font-size: 9px;
+  line-height: 1.3;
+  opacity: .66;
+}
+
+.timing-guide[data-state="move"] .timing-ring {
+  border-color: rgba(255,203,102,.95);
+  box-shadow: 0 0 0 5px rgba(255,203,102,.08);
+}
+.timing-guide[data-state="arm"] .timing-ring {
+  border-color: rgba(126,189,255,.96);
+  box-shadow: 0 0 0 5px rgba(126,189,255,.08);
+}
+.timing-guide[data-state="hit"] .timing-ring {
+  border-color: rgba(216,255,71,1);
+  box-shadow: 0 0 0 7px rgba(216,255,71,.13), 0 0 24px rgba(216,255,71,.22);
+  animation: timingPulse .28s ease-in-out infinite alternate;
+}
+.timing-guide[data-state="late"] .timing-ring {
+  border-color: rgba(255,118,118,.95);
+  box-shadow: 0 0 0 5px rgba(255,118,118,.09);
+}
+
+@keyframes timingPulse {
+  from { filter: brightness(1); }
+  to { filter: brightness(1.35); }
+}
+
 .message {
   position: fixed;
   left: 50%;
@@ -146,5 +235,6 @@ button { font: inherit; }
   .telemetry { left: 14px; right: 14px; bottom: 14px; grid-template-columns: repeat(2, 1fr); }
   .help { display: none; }
   .stance { bottom: 132px; }
+  .timing-copy { display: none; }
   .topbar { left: 16px; right: 16px; top: 16px; }
 }
