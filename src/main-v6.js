@@ -1,3 +1,4 @@
+import './v063-pause.js';
 import './v062-runtime-loop.js';
 import './v061-final-pass.js';
 import './v06-polish.js';
