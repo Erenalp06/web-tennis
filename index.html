@@ -13,7 +13,7 @@
       <div class="topbar">
         <div>
           <strong>WEB TENNIS</strong>
-          <span>physics prototype v0.6.1</span>
+          <span>physics prototype v0.6.2</span>
         </div>
         <div class="rally">RALLY <b id="rallyCount">0</b></div>
       </div>
@@ -39,7 +39,7 @@
         <span>WASD / Oklar: kortta hareket</span>
         <span>Sol mouse basılı: swing hareketini çiz · sağ taraf forehand / sol taraf backhand</span>
         <span>↗ topspin · → flat · ↘ slice · hızlı gesture = daha güçlü vuruş</span>
-        <span>Vuruş sırasında güç göstergesi mouse hızını gösterir</span>
+        <span>Vuruştan sonra güç yüzdesi raket kafasında görünür</span>
         <span>Sol mouse bırak: swing · Sağ tık: iptal · R: yeni top · ESC: fareyi bırak</span>
       </div>
 
@@ -47,15 +47,14 @@
 
       <div id="startScreen" class="start-screen">
         <div class="start-card">
-          <div class="eyebrow">V0.6.1 · FINAL VISUAL PASS</div>
-          <h1>Vuruşun daha okunur, kort daha canlı.</h1>
+          <div class="eyebrow">V0.6.2 · DIRECT RUNTIME VISUALS</div>
+          <h1>Görsel katman artık gerçek oyun döngüsüne bağlı.</h1>
           <p>
-            Gesture swing fiziği korunurken rakip gövdesi gerçek AI hareketine bağlandı, file kontrastı güçlendirildi,
-            top takibi iyileştirildi ve mouse savurma hızını canlı gösteren swing-power göstergesi eklendi.
-            Birinci şahıs kol/önkol hissi, dinamik center-court scoreboard ve gece stadyumu detayları da bu sürümde.
+            Rakip hareketi, raket-içi güç göstergesi, file kontrastı, top vurgusu ve dinamik center-court scoreboard
+            renderer prototype yamaları yerine gerçek animation-frame akışından güncellenir.
           </p>
           <button id="startButton">Korta çık</button>
-          <small>Gesture swing · live power meter · first-person arm · clearer net/ball · center-court night session</small>
+          <small>Gesture swing · racket power ring · animated opponent · clearer net/ball · live scoreboard</small>
         </div>
       </div>
     </div>
