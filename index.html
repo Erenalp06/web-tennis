@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07130f" />
+    <title>Web Tennis</title>
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="game"></canvas>
+
+      <div class="topbar">
+        <div>
+          <strong>WEB TENNIS</strong>
+          <span>physics prototype</span>
+        </div>
+        <div class="rally">RALLY <b id="rallyCount">0</b></div>
+      </div>
+
+      <div class="telemetry">
+        <div><span>Raket</span><b id="racketSpeed">0.0 m/s</b></div>
+        <div><span>Top</span><b id="ballSpeed">0 km/h</b></div>
+        <div><span>Spin</span><b id="spinValue">0 rpm</b></div>
+        <div><span>Vuruş</span><b id="shotType">Bekleniyor</b></div>
+      </div>
+
+      <div class="help">
+        <span>Mouse: raketi hareket ettir</span>
+        <span>Hızlı hareket: daha sert vuruş</span>
+        <span>Yukarı süpürme: topspin</span>
+        <span>ESC: fareyi bırak</span>
+      </div>
+
+      <div id="message" class="message"></div>
+
+      <div id="startScreen" class="start-screen">
+        <div class="start-card">
+          <div class="eyebrow">FIRST PLAYABLE</div>
+          <h1>Raketi fareyle kontrol et.</h1>
+          <p>
+            Bilgisayar topu karşılayacak. Raketin temas anındaki hızı ve hareket yönü,
+            topun çıkış hızını, açısını ve spinini etkiler.
+          </p>
+          <button id="startButton">Korta çık</button>
+          <small>Başlatınca fare oyun alanına kilitlenir.</small>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
