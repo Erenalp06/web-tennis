@@ -11,6 +11,12 @@ const F = {
   initialized: false,
   lastAiX: 0,
   lastAiYaw: Math.PI - 0.25,
+  powerCanvas: null,
+  powerTexture: null,
+  powerPlane: null,
+  powerValue: 0,
+  powerShowUntil: 0,
+  powerBound: false,
 };
 
 const clamp = THREE.MathUtils.clamp;
@@ -133,6 +139,133 @@ function updateBallGlow(camera) {
   F.glow.visible = F.ball.visible;
 }
 
+function drawRacketPower(value) {
+  if (!F.powerCanvas || !F.powerTexture) return;
+  const ctx = F.powerCanvas.getContext('2d');
+  const size = F.powerCanvas.width;
+  const center = size / 2;
+  const pct = Math.round(clamp(value, 0, 1) * 100);
+  const start = -Math.PI / 2;
+  const end = start + Math.PI * 2 * clamp(value, 0, 1);
+
+  ctx.clearRect(0, 0, size, size);
+
+  // Soft glass disc keeps the strings visible while giving the number contrast.
+  const bg = ctx.createRadialGradient(center, center, 28, center, center, 210);
+  bg.addColorStop(0, 'rgba(2,12,27,.42)');
+  bg.addColorStop(0.62, 'rgba(2,12,27,.22)');
+  bg.addColorStop(1, 'rgba(2,12,27,0)');
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, size, size);
+
+  ctx.lineCap = 'round';
+  ctx.lineWidth = 24;
+  ctx.strokeStyle = 'rgba(255,255,255,.13)';
+  ctx.beginPath();
+  ctx.arc(center, center, 174, 0, Math.PI * 2);
+  ctx.stroke();
+
+  const ring = ctx.createLinearGradient(92, 92, 420, 420);
+  ring.addColorStop(0, '#6fd8ff');
+  ring.addColorStop(0.55, '#d9ff48');
+  ring.addColorStop(0.82, '#ffbd4a');
+  ring.addColorStop(1, '#ff665c');
+  ctx.strokeStyle = ring;
+  ctx.shadowColor = pct >= 85 ? 'rgba(255,102,92,.8)' : 'rgba(217,255,72,.72)';
+  ctx.shadowBlur = 22;
+  ctx.beginPath();
+  ctx.arc(center, center, 174, start, end);
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '800 112px system-ui, sans-serif';
+  ctx.fillText(`${pct}%`, center, center - 10);
+  ctx.fillStyle = 'rgba(255,255,255,.58)';
+  ctx.font = '800 28px system-ui, sans-serif';
+  ctx.letterSpacing = '4px';
+  ctx.fillText('POWER', center, center + 82);
+
+  F.powerTexture.needsUpdate = true;
+}
+
+function ensureRacketPower() {
+  if (!F.playerRacket || F.powerPlane) return;
+
+  const canvas = document.createElement('canvas');
+  canvas.width = 512;
+  canvas.height = 512;
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+
+  const plane = new THREE.Mesh(
+    new THREE.PlaneGeometry(0.238, 0.31),
+    new THREE.MeshBasicMaterial({
+      map: texture,
+      transparent: true,
+      depthWrite: false,
+      depthTest: false,
+      toneMapped: false,
+      side: THREE.DoubleSide,
+      opacity: 0,
+    }),
+  );
+  plane.name = 'racket-power-display';
+  plane.position.set(0, 0, 0.018);
+  plane.renderOrder = 50;
+  F.playerRacket.add(plane);
+
+  F.powerCanvas = canvas;
+  F.powerTexture = texture;
+  F.powerPlane = plane;
+  drawRacketPower(0);
+}
+
+function bindRacketPower() {
+  if (F.powerBound) return;
+  F.powerBound = true;
+
+  // Hide the old center-screen meters. Persistent telemetry stays visible.
+  const style = document.createElement('style');
+  style.id = 'v061-racket-power-style';
+  style.textContent = '#powerMeterFix,#powerMeter{display:none!important}';
+  document.head.appendChild(style);
+
+  document.addEventListener('mouseup', (event) => {
+    if (event.button !== 0 || document.pointerLockElement?.id !== 'game') return;
+
+    // Runtime power listeners update their values in the same event. Read on
+    // the next task so the racket receives the final shot percentage.
+    setTimeout(() => {
+      const raw = document.querySelector('#powerTelemetryValue')?.textContent || '0';
+      const pct = clamp(parseFloat(raw) || 0, 0, 100);
+      if (pct <= 0) return;
+      F.powerValue = pct / 100;
+      F.powerShowUntil = performance.now() + 1050;
+      drawRacketPower(F.powerValue);
+    }, 0);
+  }, true);
+}
+
+function updateRacketPower() {
+  if (!F.powerPlane) return;
+  const remaining = F.powerShowUntil - performance.now();
+  if (remaining <= 0) {
+    F.powerPlane.material.opacity = 0;
+    F.powerPlane.visible = false;
+    return;
+  }
+
+  F.powerPlane.visible = true;
+  const fadeIn = clamp((1050 - remaining) / 120, 0, 1);
+  const fadeOut = clamp(remaining / 260, 0, 1);
+  F.powerPlane.material.opacity = Math.min(fadeIn, fadeOut) * 0.95;
+  const pulse = 1 + Math.sin((1050 - remaining) * 0.022) * 0.015;
+  F.powerPlane.scale.set(pulse, pulse, 1);
+}
+
 function fixNet() {
   if (!F.net) return;
 
@@ -237,6 +370,8 @@ function animateOpponent() {
 
 function finalPass(scene, camera) {
   locate(scene);
+  bindRacketPower();
+  ensureRacketPower();
   ensureArm(scene);
   ensureBallGlow(scene);
   fixNet();
@@ -244,6 +379,7 @@ function finalPass(scene, camera) {
   animateOpponent();
   updateArm(camera);
   updateBallGlow(camera);
+  updateRacketPower();
 }
 
 // Imported before all other visual wrappers. Therefore this wrapper becomes
