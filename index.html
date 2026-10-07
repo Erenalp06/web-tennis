@@ -13,7 +13,7 @@
       <div class="topbar">
         <div>
           <strong>WEB TENNIS</strong>
-          <span>physics prototype v0.3.1</span>
+          <span>physics prototype v0.4</span>
         </div>
         <div class="rally">RALLY <b id="rallyCount">0</b></div>
       </div>
@@ -30,35 +30,35 @@
       <div id="timingGuide" class="timing-guide" data-state="prepare" aria-hidden="true">
         <div class="timing-ring"><span></span></div>
         <div class="timing-copy">
-          <b id="timingLabel">HAZIRLAN</b>
-          <span id="timingHint">Top yaklaşırken vuruşunu kur</span>
+          <b id="timingLabel">SWING ÇİZ</b>
+          <span id="timingHint">Top yaklaşırken gesture'ını hazırla</span>
         </div>
       </div>
 
       <div class="help">
         <span>WASD / Oklar: kortta hareket</span>
-        <span>Sol mouse basılı: vuruş yönünü seç · sağa forehand / sola backhand</span>
-        <span>Sol mouse bırak: swing · mouse yukarı: topspin</span>
-        <span>Sağ tık: hazırlığı iptal · R: yeni top · ESC: fareyi bırak</span>
+        <span>Sol mouse basılı: swing hareketini çiz · sağ taraf forehand / sol taraf backhand</span>
+        <span>↗ topspin · → flat · ↘ slice · hızlı gesture = daha güçlü vuruş</span>
+        <span>Sol mouse bırak: swing · Sağ tık: iptal · R: yeni top · ESC: fareyi bırak</span>
       </div>
 
       <div id="message" class="message"></div>
 
       <div id="startScreen" class="start-screen">
         <div class="start-card">
-          <div class="eyebrow">V0.3.1 · TIMING ASSIST</div>
-          <h1>Topa git, yönü seç, doğru anda bırak.</h1>
+          <div class="eyebrow">V0.4 · GESTURE SWING</div>
+          <h1>Mouse hareketin artık raket hareketin.</h1>
           <p>
-            WASD veya ok tuşlarıyla topun arkasına geç. Sol mouse'u basılı tutup sağa ya da sola
-            çekerek vuruş tarafını kilitle; top üzerindeki zamanlama halkası “Şimdi bırak” dediğinde
-            sol mouse'u bırakıp swing'i başlat.
+            WASD veya ok tuşlarıyla topun arkasına geç. Sol mouse'u basılı tutup ekranda gerçekten
+            yapmak istediğin swing'i çiz: yukarı eğimli hareket topspin, yatay hareket flat, aşağı
+            eğimli hareket slice üretir. Hızın vuruş gücünü belirler; temas yüksekliğini gelen top hesaplar.
           </p>
           <button id="startButton">Korta çık</button>
-          <small>New York gece maçı atmosferi · hareket · yönlü hazırlık · zamanlama yardımı</small>
+          <small>New York gece maçı atmosferi · gesture tabanlı swing · timing assist · fizik tabanlı temas</small>
         </div>
       </div>
     </div>
 
-    <script type="module" src="/src/main-v2.js"></script>
+    <script type="module" src="/src/main-v3.js"></script>
   </body>
 </html>
