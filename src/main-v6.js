@@ -1,3 +1,4 @@
+import './v07-audio.js';
 import './v063-pause.js';
 import './v062-runtime-loop.js';
 import './v061-final-pass.js';
