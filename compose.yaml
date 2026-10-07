@@ -1,0 +1,10 @@
+services:
+  web-tennis:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: web-tennis:local
+    container_name: web-tennis
+    restart: unless-stopped
+    ports:
+      - "8080:80"
