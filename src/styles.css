@@ -2,14 +2,14 @@
 
 :root {
   font-family: Inter, system-ui, sans-serif;
-  color: #effff8;
-  background: #07130f;
+  color: #eff6ff;
+  background: #07101f;
   font-synthesis: none;
 }
 
 * { box-sizing: border-box; }
 html, body, #app { width: 100%; height: 100%; margin: 0; overflow: hidden; }
-body { background: #07130f; }
+body { background: #07101f; }
 button { font: inherit; }
 
 #game {
@@ -28,12 +28,12 @@ button { font: inherit; }
   justify-content: space-between;
   align-items: flex-start;
   pointer-events: none;
-  text-shadow: 0 2px 20px rgba(0,0,0,.45);
+  text-shadow: 0 2px 20px rgba(0,0,0,.55);
 }
 
 .topbar strong { display: block; font-size: 14px; letter-spacing: .18em; }
-.topbar span { display: block; margin-top: 5px; opacity: .55; font-size: 11px; text-transform: uppercase; letter-spacing: .12em; }
-.rally { text-align: right; font-size: 11px; letter-spacing: .16em; opacity: .65; }
+.topbar span { display: block; margin-top: 5px; opacity: .6; font-size: 11px; text-transform: uppercase; letter-spacing: .12em; }
+.rally { text-align: right; font-size: 11px; letter-spacing: .16em; opacity: .72; }
 .rally b { display: block; font-size: 32px; line-height: 1; letter-spacing: -.04em; opacity: 1; }
 
 .telemetry {
@@ -44,15 +44,16 @@ button { font: inherit; }
   grid-template-columns: repeat(4, minmax(100px, 1fr));
   gap: 1px;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.14);
   border-radius: 14px;
-  background: rgba(3,10,8,.56);
+  background: rgba(4,13,29,.68);
   backdrop-filter: blur(14px);
   pointer-events: none;
+  box-shadow: 0 10px 35px rgba(0,0,0,.2);
 }
 
-.telemetry div { padding: 11px 14px 12px; background: rgba(255,255,255,.035); }
-.telemetry span { display: block; font-size: 9px; text-transform: uppercase; letter-spacing: .14em; opacity: .48; margin-bottom: 5px; }
+.telemetry div { padding: 11px 14px 12px; background: rgba(255,255,255,.04); }
+.telemetry span { display: block; font-size: 9px; text-transform: uppercase; letter-spacing: .14em; opacity: .5; margin-bottom: 5px; }
 .telemetry b { font-size: 13px; font-weight: 600; }
 
 .help {
@@ -61,11 +62,33 @@ button { font: inherit; }
   bottom: 28px;
   text-align: right;
   font-size: 10px;
-  line-height: 1.75;
-  opacity: .48;
+  line-height: 1.78;
+  opacity: .58;
   pointer-events: none;
+  text-shadow: 0 2px 16px rgba(0,0,0,.55);
 }
 .help span { display: block; }
+
+.stance {
+  position: fixed;
+  left: 50%;
+  bottom: 86px;
+  transform: translateX(-50%);
+  min-width: 118px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .16em;
+  background: rgba(4,13,29,.58);
+  border: 1px solid rgba(255,255,255,.13);
+  backdrop-filter: blur(10px);
+  pointer-events: none;
+  transition: border-color .12s ease, background .12s ease;
+}
+.stance[data-side="forehand"] { border-color: rgba(111,190,255,.6); background: rgba(10,52,93,.62); }
+.stance[data-side="backhand"] { border-color: rgba(213,171,255,.58); background: rgba(61,32,92,.62); }
 
 .message {
   position: fixed;
@@ -74,8 +97,8 @@ button { font: inherit; }
   transform: translateX(-50%);
   padding: 9px 15px;
   border-radius: 999px;
-  background: rgba(3,10,8,.65);
-  border: 1px solid rgba(255,255,255,.1);
+  background: rgba(3,10,22,.72);
+  border: 1px solid rgba(255,255,255,.12);
   font-size: 11px;
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -90,35 +113,38 @@ button { font: inherit; }
   inset: 0;
   display: grid;
   place-items: center;
-  background: radial-gradient(circle at 50% 48%, rgba(26,86,64,.2), rgba(2,8,6,.8));
+  background:
+    radial-gradient(circle at 50% 45%, rgba(34,91,150,.28), transparent 42%),
+    linear-gradient(rgba(3,10,22,.34), rgba(3,10,22,.83));
   backdrop-filter: blur(7px);
 }
 .start-screen.hidden { display: none; }
 
 .start-card {
-  width: min(520px, calc(100vw - 40px));
-  padding: 34px;
-  border: 1px solid rgba(255,255,255,.12);
+  width: min(560px, calc(100vw - 40px));
+  padding: 36px;
+  border: 1px solid rgba(255,255,255,.14);
   border-radius: 22px;
-  background: rgba(5,18,14,.82);
-  box-shadow: 0 24px 90px rgba(0,0,0,.38);
+  background: rgba(5,16,35,.86);
+  box-shadow: 0 24px 90px rgba(0,0,0,.48);
 }
-.eyebrow { font-size: 10px; letter-spacing: .2em; opacity: .5; margin-bottom: 12px; }
+.eyebrow { font-size: 10px; letter-spacing: .2em; color: #7ebdff; opacity: .82; margin-bottom: 12px; }
 .start-card h1 { margin: 0; font-size: clamp(30px, 5vw, 48px); line-height: 1.02; letter-spacing: -.045em; }
-.start-card p { margin: 18px 0 24px; max-width: 45ch; line-height: 1.6; color: rgba(239,255,248,.68); font-size: 13px; }
+.start-card p { margin: 18px 0 24px; max-width: 51ch; line-height: 1.6; color: rgba(239,246,255,.7); font-size: 13px; }
 .start-card button {
   border: 0;
   border-radius: 999px;
   padding: 12px 18px;
-  background: #d6ff49;
+  background: #d8ff47;
   color: #101a09;
   font-weight: 800;
   cursor: pointer;
 }
-.start-card small { display: block; margin-top: 13px; opacity: .4; font-size: 10px; }
+.start-card small { display: block; margin-top: 13px; opacity: .46; font-size: 10px; }
 
 @media (max-width: 700px) {
   .telemetry { left: 14px; right: 14px; bottom: 14px; grid-template-columns: repeat(2, 1fr); }
   .help { display: none; }
+  .stance { bottom: 132px; }
   .topbar { left: 16px; right: 16px; top: 16px; }
 }

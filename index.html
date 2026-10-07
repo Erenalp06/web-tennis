@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#9fc9df" />
+    <meta name="theme-color" content="#0c1b33" />
     <title>Web Tennis</title>
   </head>
   <body>
@@ -13,7 +13,7 @@
       <div class="topbar">
         <div>
           <strong>WEB TENNIS</strong>
-          <span>physics prototype v0.2</span>
+          <span>physics prototype v0.3</span>
         </div>
         <div class="rally">RALLY <b id="rallyCount">0</b></div>
       </div>
@@ -25,25 +25,27 @@
         <div><span>Vuruş</span><b id="shotType">Bekleniyor</b></div>
       </div>
 
+      <div id="stance" class="stance">READY</div>
+
       <div class="help">
-        <span>Mouse: raketi konumlandır ve yönlendir</span>
-        <span>Hızlı hareket: swing hızı</span>
-        <span>Aşağıdan yukarı: topspin</span>
-        <span>R: yeni top · ESC: fareyi bırak</span>
+        <span>WASD / Oklar: kortta hareket</span>
+        <span>Mouse sağ: forehand hazırlığı · mouse sol: backhand hazırlığı</span>
+        <span>Hazırlığın tersine hızlı çek: swing · Mouse yukarı: topspin</span>
+        <span>Space: hazırlanmış vuruşu tetikle · R: yeni top · ESC: fareyi bırak</span>
       </div>
 
       <div id="message" class="message"></div>
 
       <div id="startScreen" class="start-screen">
         <div class="start-card">
-          <div class="eyebrow">V0.2 · TENNIS SCALE</div>
-          <h1>Raketi fareyle gerçekten savur.</h1>
+          <div class="eyebrow">V0.3 · NIGHT SESSION</div>
+          <h1>Topa git, vuruşu hazırla, sonra savur.</h1>
           <p>
-            Kamera baseline gerisinde ve raket gerçek tenis ölçeğinde. Raket yüzünün açısı,
-            temas noktası ve swing hızı topun çıkışını etkiler.
+            WASD veya ok tuşlarıyla baseline boyunca hareket et. Mouse'u sağa açınca forehand,
+            sola açınca backhand hazırlanır; ters yöndeki hızlı hareket swing'i başlatır.
           </p>
           <button id="startButton">Korta çık</button>
-          <small>Başlatınca fare oyun alanına kilitlenir.</small>
+          <small>New York gece maçı atmosferi · seyirci tribünleri · fizik tabanlı temas</small>
         </div>
       </div>
     </div>
