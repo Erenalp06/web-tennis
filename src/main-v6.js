@@ -1,3 +1,4 @@
+import './v082-mode-select.js';
 import './v08-controls.js';
 import './v081-serve-tutorial.js';
 import './v07-audio.js';

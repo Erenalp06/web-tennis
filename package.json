@@ -4,9 +4,9 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --config vite.config.v081.js",
-    "build": "vite build --config vite.config.v081.js",
-    "preview": "vite preview --config vite.config.v081.js"
+    "dev": "vite --config vite.config.v082.js",
+    "build": "vite build --config vite.config.v082.js",
+    "preview": "vite preview --config vite.config.v082.js"
   },
   "engines": {
     "node": ">=20.19.0"
