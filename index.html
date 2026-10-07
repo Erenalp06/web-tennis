@@ -13,7 +13,7 @@
       <div class="topbar">
         <div>
           <strong>WEB TENNIS</strong>
-          <span>physics prototype v0.8</span>
+          <span>physics prototype v0.8.1</span>
         </div>
         <div class="rally">RALLY <b id="rallyCount">0</b></div>
       </div>
@@ -38,7 +38,7 @@
       <div class="help">
         <span>WASD / Oklar: baseline’dan file önüne kadar hareket</span>
         <span>Servis çizgisinin içinde topu sekmeden vur: otomatik vole</span>
-        <span>Servis: üstten SEN/CPU seç · SEN ise SPACE toss → mouse gesture</span>
+        <span>Servis: üstten SEN/CPU seç · SEN ise SPACE toss → ekrandaki ↗ mouse rehberini izle</span>
         <span>Sol mouse: swing çiz · ↗ topspin · → flat · ↘ slice</span>
         <span>T: servis atanı değiştir · M: ses aç/kapat · ESC: duraklat · R: yeni point</span>
       </div>
@@ -47,14 +47,14 @@
 
       <div id="startScreen" class="start-screen">
         <div class="start-card">
-          <div class="eyebrow">V0.8 · MATCH FLOW</div>
-          <h1>Baseline’dan fileye, return’den servise.</h1>
+          <div class="eyebrow">V0.8.1 · SERVE FLOW</div>
+          <h1>Servis artık acele etmiyor.</h1>
           <p>
-            Artık servis kutularına kadar yaklaşabilir, topu sekmeden vole vurabilirsin. Point’i senin ya da CPU’nun servisiyle başlatabilir;
-            kendi servisinde Space ile toss yapıp mevcut mouse gesture mekaniğiyle topa vurabilirsin. Sesler de kategori bazında kapatılabilir.
+            CPU pointler arasında hazırlanıp bekler ve daha güvenli bir servis yayı kullanır. Kendi servisinde Space ile toss yaptıktan sonra
+            ekrandaki animasyonlu mouse rehberi sana hareketi ve bırakma anını gösterir.
           </p>
           <button id="startButton">Korta çık</button>
-          <small>Approach + volley · player/CPU serve · service-box validation · per-category audio controls</small>
+          <small>CPU pre-serve pause · safer service arc · animated mouse serve tutorial</small>
         </div>
       </div>
     </div>
