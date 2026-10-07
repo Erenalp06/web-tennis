@@ -4,5 +4,7 @@ import './v062-runtime-loop.js';
 import './v061-final-pass.js';
 import './v06-polish.js';
 import './visual-polish.js';
+import './v071-footwork.js';
+import './v071-audio-extra.js';
 await import('./main-v3.js');
 await import('./v06-runtime-fix.js');
