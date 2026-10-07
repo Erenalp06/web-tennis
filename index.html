@@ -13,7 +13,7 @@
       <div class="topbar">
         <div>
           <strong>WEB TENNIS</strong>
-          <span>physics prototype v0.6.3</span>
+          <span>physics prototype v0.7</span>
         </div>
         <div class="rally">RALLY <b id="rallyCount">0</b></div>
       </div>
@@ -40,21 +40,21 @@
         <span>Sol mouse basılı: swing hareketini çiz · sağ taraf forehand / sol taraf backhand</span>
         <span>↗ topspin · → flat · ↘ slice · hızlı gesture = daha güçlü vuruş</span>
         <span>Vuruştan sonra güç yüzdesi raket kafasında görünür</span>
-        <span>Sol mouse bırak: swing · Sağ tık: iptal · R: yeni top · ESC: duraklat / fareyi bırak</span>
+        <span>M: ses aç/kapat · ESC: duraklat / fareyi bırak · R: yeni top</span>
       </div>
 
       <div id="message" class="message"></div>
 
       <div id="startScreen" class="start-screen">
         <div class="start-card">
-          <div class="eyebrow">V0.6.3 · PAUSE + HUD POLISH</div>
-          <h1>ESC artık gerçek duraklatma.</h1>
+          <div class="eyebrow">V0.7 · MATCH AUDIO</div>
+          <h1>Kort artık sadece görünmüyor, duyuluyor.</h1>
           <p>
-            Pointer lock bırakıldığında top, AI ve fizik tamamen donar; devam ettiğinde kaldığı yerden sürer.
-            Güç değeri yalnızca raket kafasındaki radial göstergeyle sunulur, sol alttaki tekrar eden güç kutusu gizlenir.
+            Raket-top teması vuruş gücüne göre değişen gerçekçi bir pop üretir; top sekmeleri ayrı duyulur.
+            Gece seansı kalabalığı sayı aralarında hafifçe uğuldar, top oyuna girdiğinde ise tenis maçı gibi sessizleşir.
           </p>
           <button id="startButton">Korta çık</button>
-          <small>True pause · racket power ring · cleaner telemetry · gesture swing</small>
+          <small>Procedural racket impact · court bounce · dynamic crowd hush · M to mute</small>
         </div>
       </div>
     </div>
