@@ -13,7 +13,7 @@
       <div class="topbar">
         <div>
           <strong>WEB TENNIS</strong>
-          <span>physics prototype v0.3</span>
+          <span>physics prototype v0.3.1</span>
         </div>
         <div class="rally">RALLY <b id="rallyCount">0</b></div>
       </div>
@@ -27,25 +27,34 @@
 
       <div id="stance" class="stance">READY</div>
 
+      <div id="timingGuide" class="timing-guide" data-state="prepare" aria-hidden="true">
+        <div class="timing-ring"><span></span></div>
+        <div class="timing-copy">
+          <b id="timingLabel">HAZIRLAN</b>
+          <span id="timingHint">Top yaklaşırken vuruşunu kur</span>
+        </div>
+      </div>
+
       <div class="help">
         <span>WASD / Oklar: kortta hareket</span>
-        <span>Mouse sağ: forehand hazırlığı · mouse sol: backhand hazırlığı</span>
-        <span>Hazırlığın tersine hızlı çek: swing · Mouse yukarı: topspin</span>
-        <span>Space: hazırlanmış vuruşu tetikle · R: yeni top · ESC: fareyi bırak</span>
+        <span>Sol mouse basılı: vuruş yönünü seç · sağa forehand / sola backhand</span>
+        <span>Sol mouse bırak: swing · mouse yukarı: topspin</span>
+        <span>Sağ tık: hazırlığı iptal · R: yeni top · ESC: fareyi bırak</span>
       </div>
 
       <div id="message" class="message"></div>
 
       <div id="startScreen" class="start-screen">
         <div class="start-card">
-          <div class="eyebrow">V0.3 · NIGHT SESSION</div>
-          <h1>Topa git, vuruşu hazırla, sonra savur.</h1>
+          <div class="eyebrow">V0.3.1 · TIMING ASSIST</div>
+          <h1>Topa git, yönü seç, doğru anda bırak.</h1>
           <p>
-            WASD veya ok tuşlarıyla baseline boyunca hareket et. Mouse'u sağa açınca forehand,
-            sola açınca backhand hazırlanır; ters yöndeki hızlı hareket swing'i başlatır.
+            WASD veya ok tuşlarıyla topun arkasına geç. Sol mouse'u basılı tutup sağa ya da sola
+            çekerek vuruş tarafını kilitle; top üzerindeki zamanlama halkası “Şimdi bırak” dediğinde
+            sol mouse'u bırakıp swing'i başlat.
           </p>
           <button id="startButton">Korta çık</button>
-          <small>New York gece maçı atmosferi · seyirci tribünleri · fizik tabanlı temas</small>
+          <small>New York gece maçı atmosferi · hareket · yönlü hazırlık · zamanlama yardımı</small>
         </div>
       </div>
     </div>
